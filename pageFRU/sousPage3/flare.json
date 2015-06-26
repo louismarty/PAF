@@ -1,0 +1,227 @@
+{
+ "name": "",
+ "children": [
+  {
+   "name": "Années 1930",
+   "children": [
+    {
+     "name": "France",
+     "children": [
+      {
+       "name": "P90-95",
+       "children": [
+        {"name": "Travail : 78%", "size": 78},
+        {"name": "Capital : 13%", "size": 13},
+        {"name": "Mixtes : 9%", "size": 9}
+        ]
+      },
+      {
+       "name": "P95-99",
+       "children": [
+        {"name": "Travail : 68%", "size": 68},
+        {"name": "Capital : 17%", "size": 17},
+        {"name": "Mixtes : 15%", "size": 15}
+        ]
+      },
+      {
+       "name": "P99-99,5",
+       "children": [
+        {"name": "Travail : 46%", "size": 46},
+        {"name": "Capital : 30%", "size": 30},
+        {"name": "Mixtes : 24%", "size": 24}
+        ]
+      },
+      {
+       "name": "P99,5-99,9",
+       "children": [
+        {"name": "Travail : 37%", "size": 37},
+        {"name": "Capital : 39%", "size": 39},
+        {"name": "Mixtes : 24%", "size": 24}
+        ]
+      },
+      {
+       "name": "P99,9-99,99",
+       "children": [
+        {"name": "Travail : 50%", "size": 50},
+        {"name": "Capital : 22%", "size": 22},
+        {"name": "Mixtes : 28%", "size": 28}
+        ]
+      },
+      {
+       "name": "P99,99-100",
+       "children": [
+        {"name": "Travail : 13%", "size": 13},
+        {"name": "Capital : 63%", "size": 63},
+        {"name": "Mixtes : 24%", "size": 24}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "États-Unis",
+     "children": [
+      {
+       "name": "P90-95",
+       "children": [
+        {"name": "Travail : 58,5%", "size": 59},
+        {"name": "Capital : 22,5%", "size": 22},
+        {"name": "Mixtes : 19%", "size": 19}
+        ]
+      },
+      {
+       "name": "P95-99",
+       "children": [
+        {"name": "Travail : 52%", "size": 52},
+        {"name": "Capital : 27%", "size": 27},
+        {"name": "Mixtes : 21%", "size": 21}
+        ]
+      },
+      {
+       "name": "P99-99,5",
+       "children": [
+        {"name": "Travail : 38%", "size": 38},
+        {"name": "Capital : 39%", "size": 39},
+        {"name": "Mixtes : 23%", "size": 23}
+        ]
+      },
+      {
+       "name": "P99,5-99,9",
+       "children": [
+        {"name": "Travail : 28%", "size": 28},
+        {"name": "Capital : 55%", "size": 55},
+        {"name": "Mixtes : 17%", "size": 17}
+        ]
+      },
+      {
+       "name": "P99,9-99,99",
+       "children": [
+        {"name": "Travail : 14%", "size": 14},
+        {"name": "Capital : 74%", "size": 74},
+        {"name": "Mixtes : 12%", "size": 12}
+        ]
+      },
+      {
+       "name": "P99,99-100",
+       "children": [
+        {"name": "Travail : 4%", "size": 4},
+        {"name": "Capital : 86%", "size": 86},
+        {"name": "Mixtes : 10%", "size": 10}
+        ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Années 2000",
+   "children": [
+    {
+     "name": "France",
+     "children": [
+      {
+       "name": "P90-95",
+       "children": [
+        {"name": "Travail : 88%", "size": 88},
+        {"name": "Capital : 5%", "size": 5},
+        {"name": "Mixtes : 7%", "size": 7}
+        ]
+      },
+      {
+       "name": "P95-99",
+       "children": [
+        {"name": "Travail : 77%", "size": 77},
+        {"name": "Capital : 8%", "size": 8},
+        {"name": "Mixtes : 15%", "size": 15}
+        ]
+      },
+      {
+       "name": "P99-99,5",
+       "children": [
+        {"name": "Travail : 60%", "size": 60},
+        {"name": "Capital : 15%", "size": 15},
+        {"name": "Mixtes : 25%", "size": 25}
+        ]
+      },
+      {
+       "name": "P99,5-99,9",
+       "children": [
+        {"name": "Travail : 48%", "size": 48},
+        {"name": "Capital : 22%", "size": 22},
+        {"name": "Mixtes : 30%", "size": 30}
+        ]
+      },
+      {
+       "name": "P99,9-99,99",
+       "children": [
+        {"name": "Travail : 37%", "size": 37},
+        {"name": "Capital : 38%", "size": 38},
+        {"name": "Mixtes : 25%", "size": 25}
+        ]
+      },
+      {
+       "name": "P99,99-100",
+       "children": [
+        {"name": "Travail : 28%", "size": 28},
+        {"name": "Capital : 59%", "size": 59},
+        {"name": "Mixtes : 13%", "size": 13}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "États-Unis",
+     "children": [
+      {
+       "name": "P90-95",
+       "children": [
+        {"name": "Travail : 85%", "size": 85},
+        {"name": "Capital : 9%", "size": 9},
+        {"name": "Mixtes : 6%", "size": 6}
+        ]
+      },
+      {
+       "name": "P95-99",
+       "children": [
+        {"name": "Travail : 73%", "size": 73},
+        {"name": "Capital : 15%", "size": 15},
+        {"name": "Mixtes : 12%", "size": 12}
+        ]
+      },
+      {
+       "name": "P99-99,5",
+       "children": [
+        {"name": "Travail : 60%", "size": 60},
+        {"name": "Capital : 22%", "size": 22},
+        {"name": "Mixtes : 18%", "size": 18}
+        ]
+      },
+      {
+       "name": "P99,5-99,9",
+       "children": [
+        {"name": "Travail : 45%", "size": 45},
+        {"name": "Capital : 32%", "size": 32},
+        {"name": "Mixtes : 23%", "size": 23}
+        ]
+      },
+      {
+       "name": "P99,9-99,99",
+       "children": [
+        {"name": "Travail : 30%", "size": 30},
+        {"name": "Capital : 49%", "size": 49},
+        {"name": "Mixtes : 21%", "size": 21}
+        ]
+      },
+      {
+       "name": "P99,99-100",
+       "children": [
+        {"name": "Travail : 17%", "size": 17},
+        {"name": "Capital : 71%", "size": 71},
+        {"name": "Mixtes : 12%", "size": 12}
+        ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

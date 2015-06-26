@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mon petit Piketty Illustré - Projet PAF</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+    <style type="text/css">  
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+    display: none;
+
+} 
+
+html {
+
+    overflow-x: hidden;
+}
+
+</style>
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <h1>LA FRANCE EN DÉTAILS</h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="../../index.html">Accueil</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">France<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Patrimoine</a></li>
+            <li><a href="../sousPage2/pageFrance2.html">Emploi</a></li>
+            <li><a href="../sousPage3/pageFrance3.html">Revenus</a></li>
+          </ul>
+        </li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">France - RU - USA<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="../../pageFRU/sousPage1/pageFRU1.html">Salaires élevés</a></li>
+            <li><a href="../../pageFRU/sousPage2/pageFRU2.html">TOP 10/BOTTOM 90</a></li>
+            <li><a href="../../pageFRU/sousPage3/pageFRU3.html">REVENUS</a></li>
+          </ul>
+        </li>
+      </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+	<!-- Section: intro -->
+    <section id="intro" class="intro">
+	
+		<div class="slogan">
+			<h2>Patrimoine</h2>
+			<h4>Évolution du patrimoine des Français depuis 1820, relativement à la tranche des 50-59 ans.</h4>
+		</div>
+		<div class="page-scroll">
+			<a href="#service" class="btn btn-circle">
+				<i class="fa fa-angle-double-down animated"></i>
+			</a>
+		</div>
+    </section>
+	<!-- /Section: intro -->
+
+	<!-- Section: about -->
+    <section id="about" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Premier graphe</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+                        
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+            <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  <h4></h4>
+    <br> <br> <br>
+
+<div id="figure2" style="margin-bottom:50px;">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script type="text/javascript">
+window.onload=function() {
+
+
+var margin = {top: 20, right: 10, bottom: 30, left: 50},
+    width = 1060 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var xAxis = d3.svg.axis()
+    .scale(x0)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".2s"));
+
+var svg = d3.select("#figure2").append("svg")
+    .attr("width", width + margin.left + margin.right + 1000)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(50," + margin.top + ")");
+
+d3.csv("data_5.csv", function(error, data) {
+  if (error) throw error;
+
+  var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
+
+  data.forEach(function(d) {
+    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+  });
+
+  x0.domain(data.map(function(d) { return d.State; }));
+  x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Patrimoine moyen du groupe d'âge en % par rapport aux 50-59 ans");
+
+  var state = svg.selectAll(".state")
+      .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.ages; })
+    .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(ageNames.slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(70," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
+});
+
+}
+</script>
+            
+    <b>Lecture :</b> En 1880, en moyenne, le patrimoine des 70-79 ans représentait 180% de celui des 50-59 ans.
+
+		</div>
+	</section>
+	<!-- /Section: about -->
+	
+
+	<!-- Section: services -->
+    <section id="service" class="home-section text-center bg-gray">
+		
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Deuxième graphe</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+
+
+<!-- <style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style> -->
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+
+
+
+
+<div id="figure" style="margin-bottom: 50px;"></div>
+
+
+
+<script>
+
+var margin = {top: 50, right: 20, bottom: 10, left: 65},
+    width = 800 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var y = d3.scale.ordinal()
+    .rangeRoundBands([0, height], .3);
+
+var x = d3.scale.linear()
+    .rangeRound([0, width]);
+
+var color = d3.scale.ordinal()
+    .range(["#c7001e", "#f6a580", "#cccccc", "#92c6db", "#086fad"]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("top");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+
+var svg = d3.select("#figure").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("id", "d3-plot")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  color.domain(["20-29 ans", "30-39 ans", "40-49 ans", "60-79 ans", "80 ans et plus"]);
+
+  d3.csv("raw_data.csv", function(error, data) {
+
+  data.forEach(function(d) {
+    // calc percentages
+    d["20-29 ans"] = +d[1]*100/d.N;
+    d["30-39 ans"] = +d[2]*100/d.N;
+    d["40-49 ans"] = +d[3]*100/d.N;
+    d["60-79 ans"] = +d[4]*100/d.N;
+    d["80 ans et plus"] = +d[5]*100/d.N;
+
+    var x0 = -1*(d["20-29 ans"]+d["30-39 ans"]+d["40-49 ans"]);
+    var idx = 100;
+    d.boxes = color.domain().map(function(name) { return {name: name, x0: x0, x1: x0 += +d[name], N: +d.N, n: +d[idx += 1]}; });
+  });
+
+  var min_val = d3.min(data, function(d) {
+          return d.boxes["0"].x0;
+          });
+
+  var max_val = d3.max(data, function(d) {
+          return d.boxes["4"].x1;
+          });
+
+  x.domain([min_val, max_val]).nice();
+  y.domain(data.map(function(d) { return d.Question; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+
+  var vakken = svg.selectAll(".question")
+      .data(data)
+    .enter().append("g")
+      .attr("class", "bar")
+      .attr("transform", function(d) { return "translate(0," + y(d.Question) + ")"; });
+
+  var bars = vakken.selectAll("rect")
+      .data(function(d) { return d.boxes; })
+    .enter().append("g").attr("class", "subbar");
+
+  bars.append("rect")
+      .attr("height", y.rangeBand())
+      .attr("x", function(d) { return x(d.x0); })
+      .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+      .style("fill", function(d) { return color(d.name); });
+
+  bars.append("text")
+      .attr("x", function(d) { return x(d.x0); })
+      .attr("y", y.rangeBand()/2)
+      .attr("dy", "0.5em")
+      .attr("dx", "0.5em")
+      .style("font" ,"10px sans-serif")
+      .style("text-anchor", "begin")
+      //.text(function(d) { return d; });
+
+  vakken.insert("rect",":first-child")
+      .attr("height", y.rangeBand())
+      .attr("x", "1")
+      .attr("width", width)
+      .attr("fill-opacity", "0.5")
+      .style("fill", "#F5F5F5")
+      .attr("class", function(d,index) { return index%2==0 ? "even" : "uneven"; });
+
+  svg.append("g")
+      .attr("class", "y axis")
+  .append("line")
+      .attr("x1", x(0))
+      .attr("x2", x(0))
+      .attr("y2", height);
+
+  var startp = svg.append("g").attr("class", "legendbox").attr("id", "mylegendbox");
+  // this is not nice, we should calculate the bounding box and use that
+  var legend_tabs = [0, 100, 200, 300, 400];
+  var legend = startp.selectAll(".legend")
+      .data(color.domain().slice())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(" + legend_tabs[i] + ",-45)"; });
+
+  legend.append("rect")
+      .attr("x", 0)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", 22)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "begin")
+      .style("font" ,"10px sans-serif")
+      .text(function(d) { return d; });
+
+  d3.selectAll(".axis path")
+      .style("fill", "none")
+      .style("stroke", "#000")
+      .style("shape-rendering", "crispEdges")
+
+  d3.selectAll(".axis line")
+      .style("fill", "none")
+      .style("stroke", "#000")
+      .style("shape-rendering", "crispEdges")
+
+  var movesize = width/2 - startp.node().getBBox().width/2;
+  d3.selectAll(".legendbox").attr("transform", "translate(" + movesize  + ",0)");
+
+
+});
+</script>
+
+            <b>Lecture :</b> En 1820, en moyenne, la valeur du patrimoine des 40-49 ans était plus faible de 50% par rapport à celle des 50-59 ans. 
+            
+            
+		</div>
+	</section>
+	<!-- /Section: services -->
+	
+
+	
+
+	<!-- Section: contact -->
+    <section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>Vote</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+		<head>
+<script>
+function getVote(int) {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("poll").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","poll_vote.php?vote="+int,true);
+  xmlhttp.send();
+}
+</script>
+</head>
+
+<div id="poll" style="text-align:left">
+<h3>Quel graphe préférez-vous ?</h3>
+<form>
+Le premier :
+<input type="radio" name="vote" value="0" onclick="getVote(this.value)">
+<br>Le second :
+<input type="radio" name="vote" value="1" onclick="getVote(this.value)">
+</form>
+    <br><br>
+    <b>Source : </b><u>Le Capital au XXIe siècle</u>, Thomas Piketty (p.626).
+</div>
+
+
+		</div>
+	</section>
+	<!-- /Section: contact -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow shake" data-wow-delay="0.4s">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+					</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</footer>
+
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
+
+</body>
+
+</html>
